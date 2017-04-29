@@ -86,7 +86,7 @@ class SignUp extends Component {
             <input
               type="password"
               placeholder="Confirm Password"
-              value={this.state.password}
+              value={this.state.cpassword}
               onChange={(e)=>{
                 let val=e.target.value;
                 this.handleChange('cpassword',val)}
