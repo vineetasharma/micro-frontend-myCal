@@ -1,24 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Login from './Login/component';
 import {
   BrowserRouter as Router,
   Route,
   Link
-} from 'react-router-dom';
-import EventList from './EventList';
-
-const SignUp = () => (
-  <div>
-    <h2>SignUp</h2>
-  </div>
-)
-
-const Login = ({ match }) => (
-  <div>
-    <h3>{match.params.topicId}</h3>
-  </div>
-)
+} from 'react-router-dom'
+import  SignUp from './Signup/component'
 
 const Home = ({ match }) => (
   <div>
@@ -46,23 +35,25 @@ const Home = ({ match }) => (
       <h3>Please select a topic.</h3>
     )}/>
   </div>
-)
+);
 
 const App = () => (
-  <Router>
-    <div>
-      <ul>
-        <li><Link to="/">Event List</Link></li>
-        <li><Link to="/signup">SignUp</Link></li>
-        {/*<li><Link to="/topics">Home</Link></li>*/}
-      </ul>
-
-      <hr/>
-
-      <Route exact path="/" component={EventList}/>
-      <Route path="/signup" component={SignUp}/>
-      <Route path="/home" component={Home}/>
-    </div>
-  </Router>
+    <Router>
+        <div>
+            <div className="App-header">
+                <img src={logo} className="App-logo" alt="logo"/>
+                <h2>Welcome to React</h2>
+            </div>
+            <div className="nav">
+                <ul>
+                    <li><Link to="/">Login</Link></li>
+                    <li><Link to="/signup">SignUp</Link></li>
+                </ul>
+            </div>
+            <Route exact path="/" component={Login}/>
+            <Route path="/signup" component={SignUp}/>
+            <Route path="/home" component={Home}/>
+        </div>
+    </Router>
 )
 export default App
