@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Login from './Login/component';
@@ -8,6 +8,8 @@ import {
   Link
 } from 'react-router-dom'
 import  SignUp from './Signup/component'
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import  EventList from './Events/EventList';
 
@@ -38,26 +40,47 @@ const Home = ({ match }) => (
     )}/>
   </div>
 );
+const style = {
+    marginRight: 20,
+    position: 'Fixed',
+    bottom: 10,
+    right: 10
+};
 
-const App = () => (
-    <Router>
-        <div>
-            <div className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <h2>Welcome to Intellimeet</h2>
-            </div>
-            <div className="nav">
-                <ul>
-                    <li><Link to="/">Login</Link></li>
-                    <li><Link to="/signup">SignUp</Link></li>
-                    <li><Link to="/eventlist">LIst</Link></li>
-                </ul>
-            </div>
-            <Route exact path="/" component={Login}/>
-            <Route path="/signup" component={SignUp}/>
-            <Route path="/home" component={Home}/>
-            <Route path="/eventlist" component={EventList}/>
-        </div>
-    </Router>
-)
+
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.onAboutIconClicked = this.onAboutIconClicked.bind(this);
+    }
+
+    onAboutIconClicked () {
+
+    }
+
+    render() {
+        return (
+            <Router>
+                <div>
+                    <FloatingActionButton style={style} onTouchTap="">
+                        About
+                    </FloatingActionButton>
+
+                    <div className="nav">
+                        <ul>
+                            <li><Link to="/">Login</Link></li>
+                            <li><Link to="/signup">SignUp</Link></li>
+                            <li><Link to="/eventlist">LIst</Link></li>
+                        </ul>
+                    </div>
+                    <Route exact path="/" component={Login}/>
+                    <Route path="/signup" component={SignUp}/>
+                    <Route path="/home" component={Home}/>
+                    <Route path="/eventlist" component={EventList}/>
+                </div>
+            </Router>
+        );
+    }
+}
 export default App
