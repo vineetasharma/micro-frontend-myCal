@@ -5,7 +5,8 @@ import {
   BrowserRouter as Router,
   Route,
   Link
-} from 'react-router-dom'
+} from 'react-router-dom';
+import EventList from './EventList';
 
 const SignUp = () => (
   <div>
@@ -51,14 +52,14 @@ const App = () => (
   <Router>
     <div>
       <ul>
-        <li><Link to="/">Login</Link></li>
+        <li><Link to="/">Event List</Link></li>
         <li><Link to="/signup">SignUp</Link></li>
         {/*<li><Link to="/topics">Home</Link></li>*/}
       </ul>
 
       <hr/>
 
-      <Route exact path="/" component={Login}/>
+      <Route exact path="/" component={EventList}/>
       <Route path="/signup" component={SignUp}/>
       <Route path="/home" component={Home}/>
     </div>
