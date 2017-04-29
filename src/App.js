@@ -6,12 +6,7 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-
-const SignUp = () => (
-  <div>
-    <h2>SignUp</h2>
-  </div>
-)
+import  SignUp from './Signup/component'
 
 const Login = ({ match }) => (
   <div>
@@ -50,6 +45,10 @@ const Home = ({ match }) => (
 const App = () => (
   <Router>
     <div>
+      <div className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h2>Welcome to React</h2>
+      </div>
       <ul>
         <li><Link to="/">Login</Link></li>
         <li><Link to="/signup">SignUp</Link></li>
