@@ -29,8 +29,8 @@ class Login extends  Component {
         if(!this.validateEmail(userEmail.value)) {
             notify.show('Please, check the email!', 'error');
         } else {
-            axios.post('/user', {
-                email: userEmail.value,
+            axios.post('https://micro-auth.herokuapp.com/user/login', {
+                username: userEmail.value,
                 password: userPassword.value
             })
                 .then(function (response) {
