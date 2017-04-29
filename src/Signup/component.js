@@ -2,20 +2,27 @@
  * Created by ttn on 29/04/17.
  */
 import React, { Component } from 'react';
+import styles from './styles';
 
 class SignUp extends Component {
   constructor(props){
     super(props);
     this.state={
-      name:'',
+      firstname:'',
+      lastname:'',
       email:'',
       password:'',
     };
 
   }
+
   handleSubmit=(event)=>{
-    console.log('handleSubmit-----------------------------called',event);
+    let { firstname, lastname, email, password }=this.state;
+
+    if(!firstname || !lastname || !email || !password)
+      alert('All fields are mandatory!')
   };
+
   handleChange=(field,val)=>{
     this.setState({
       [field]:val,
@@ -28,17 +35,27 @@ class SignUp extends Component {
         <p className="App-intro">
           Signup page
         </p>
-        <div>
-          <form onSubmit={this.handleSubmit}>
+        <div style={styles.labels}>
             <label>
-              Name:
+              <span> First Name:</span>
               <input
                 value={this.state.name}
                 onChange={(e)=>{
                   let val=e.target.value;
-                  this.handleChange('name',val)}
+                  this.handleChange('firstname',val)}
                 }
-                placeholder="Name"
+                placeholder="First Name"
+              />
+            </label>
+            <label>
+              Last Name:
+              <input
+                value={this.state.name}
+                onChange={(e)=>{
+                  let val=e.target.value;
+                  this.handleChange('lastname',val)}
+                }
+                placeholder="Last Name"
               />
             </label>
             <label>
@@ -63,8 +80,7 @@ class SignUp extends Component {
                 }
               />
             </label>
-            <input type="submit" value="Submit" />
-          </form>
+            <input type="submit" value="Submit" onClick={()=>{this.handleSubmit();}}/>
         </div>
       </div>
     );
