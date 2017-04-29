@@ -8,6 +8,7 @@
     "material-ui-build": "0.17.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-notify-toast": "^0.1.5",
     "react-router-dom": "^4.1.1",
     "react-tap-event-plugin": "^2.0.1"
   },
