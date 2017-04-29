@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Login from './Login/component';
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
 import  SignUp from './Signup/component'
-
-const Login = ({ match }) => (
-  <div>
-    <h3>{match.params.topicId}</h3>
-  </div>
-)
 
 const Home = ({ match }) => (
   <div>
@@ -40,7 +35,7 @@ const Home = ({ match }) => (
       <h3>Please select a topic.</h3>
     )}/>
   </div>
-)
+);
 
 const App = () => (
   <Router>
@@ -49,18 +44,18 @@ const App = () => (
         <img src={logo} className="App-logo" alt="logo" />
         <h2>Welcome to React</h2>
       </div>
-      <ul>
-        <li><Link to="/">Login</Link></li>
-        <li><Link to="/signup">SignUp</Link></li>
-        {/*<li><Link to="/topics">Home</Link></li>*/}
-      </ul>
-
+      <div className="nav">
+        <ul>
+          <li><Link to="/">Login</Link></li>
+          <li><Link to="/signup">SignUp</Link></li>
+        </ul>
+      </div>
       <hr/>
 
-      <Route exact path="/" component={Login}/>
-      <Route path="/signup" component={SignUp}/>
-      <Route path="/home" component={Home}/>
-    </div>
-  </Router>
+            <Route exact path="/" component={Login}/>
+            <Route path="/signup" component={SignUp}/>
+            <Route path="/home" component={Home}/>
+        </div>
+    </Router>
 )
 export default App
