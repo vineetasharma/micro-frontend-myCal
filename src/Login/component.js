@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Notifications, {notify} from 'react-notify-toast';
+
 
 let userEmail = null, userPassword = null;
 
@@ -14,18 +16,31 @@ class Login extends  Component {
         userPassword.value = "";
     }
 
+    validateEmail(email) {
+        let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
     submit = () => {
-        console.log(userEmail.value, userPassword.value)
-        axios.post('/user', {
-            email: userEmail.value,
-            password: userPassword.value
-        })
-            .then(function (response) {
-                console.log(response);
+        if(!userPassword.value){
+            notify.show('Please, enter correct email & password!', 'error');
+        }
+
+        if(!this.validateEmail(userEmail.value)) {
+            notify.show('Please, check the email!', 'error');
+        } else {
+            axios.post('/user', {
+                email: userEmail.value,
+                password: userPassword.value
             })
-            .catch(function (error) {
-                console.log(error);
-            });
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+
     };
 
     render() {
@@ -37,6 +52,7 @@ class Login extends  Component {
                 <input type="submit"  onClick={this.submit} value="Sign In" />
             </div>
             <div className="shadow"></div>
+            <Notifications />
         </div>
     }
 }
