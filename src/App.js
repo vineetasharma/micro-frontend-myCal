@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Login from './Login/component';
@@ -44,7 +44,7 @@ const App = () => (
         <div>
             <div className="App-header">
                 <img src={logo} className="App-logo" alt="logo"/>
-                <h2>Welcome to React</h2>
+                <h2>Welcome to Intellimeet</h2>
             </div>
             <div className="nav">
                 <ul>
