@@ -5,6 +5,7 @@ const styles ={
     eventItem: {
     listStyleType: 'none',
     marginBottom: 20,
+        marginTop: 20,
     marginLeft: 50,
     marginRight: 50,
 },
