@@ -24,10 +24,9 @@ class SignUp extends Component {
     if(!firstname || !lastname || !email || !password)
       alert('All fields are mandatory!');
 
-    axios.post('/createuser', {
-      firstname,
-      lastname,
-      email,
+    axios.post('https://micro-auth.herokuapp.com/user', {
+      name: firstname,
+      username:email,
       password,
     })
       .then(function (response) {
