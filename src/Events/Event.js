@@ -1,8 +1,9 @@
 import React  from 'react';
-import './App.css';
+import '../App.css';
 import { Card, CardHeader, CardText, CardTitle } from 'material-ui/Card';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import styles from './styles'
 injectTapEventPlugin();
 
 class Event extends React.Component{
@@ -16,7 +17,7 @@ class Event extends React.Component{
 
   render() {
     return (
-      <li className="event_item">
+      <li style={styles.eventItem}>
         <Card>
 
             <CardHeader
