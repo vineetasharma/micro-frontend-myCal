@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Login from './Login/component';
@@ -38,20 +38,18 @@ const Home = ({ match }) => (
 );
 
 const App = () => (
-  <Router>
-    <div>
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to React</h2>
-      </div>
-      <div className="nav">
-        <ul>
-          <li><Link to="/">Login</Link></li>
-          <li><Link to="/signup">SignUp</Link></li>
-        </ul>
-      </div>
-      <hr/>
-
+    <Router>
+        <div>
+            <div className="App-header">
+                <img src={logo} className="App-logo" alt="logo"/>
+                <h2>Welcome to React</h2>
+            </div>
+            <div className="nav">
+                <ul>
+                    <li><Link to="/">Login</Link></li>
+                    <li><Link to="/signup">SignUp</Link></li>
+                </ul>
+            </div>
             <Route exact path="/" component={Login}/>
             <Route path="/signup" component={SignUp}/>
             <Route path="/home" component={Home}/>
