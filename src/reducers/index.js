@@ -8,4 +8,4 @@ const allReducers = combineReducers({
     events: EventReducer
 });
 
-export default allReducers
+export default allReducers;
