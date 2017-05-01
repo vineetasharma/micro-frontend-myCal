@@ -2,44 +2,15 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Login from './Login/component';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import  SignUp from './Signup/component'
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import  EventList from './Events/EventList';
+injectTapEventPlugin();
 
-const Home = ({ match }) => (
-  <div>
-    <h2>Home</h2>
-    <ul>
-      <li>
-        <Link to={`${match.url}/rendering`}>
-          Rendering with React
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/components`}>
-          Components
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/props-v-state`}>
-          Props v. State
-        </Link>
-      </li>
-    </ul>
 
-    <Route path={`${match.url}/:topicId`} component={Home}/>
-    <Route exact path={match.url} render={() => (
-      <h3>Please select a topic.</h3>
-    )}/>
-  </div>
-);
 const style = {
     marginRight: 20,
     position: 'Fixed',
@@ -63,7 +34,7 @@ class App extends React.Component {
         return (
             <Router>
                 <div>
-                    <FloatingActionButton style={style} onTouchTap="">
+                    <FloatingActionButton style={style} onTouchTap={this.onAboutIconClicked}>
                         About
                     </FloatingActionButton>
 
@@ -76,7 +47,6 @@ class App extends React.Component {
                     </div>
                     <Route exact path="/" component={Login}/>
                     <Route path="/signup" component={SignUp}/>
-                    <Route path="/home" component={Home}/>
                     <Route path="/eventlist" component={EventList}/>
                 </div>
             </Router>

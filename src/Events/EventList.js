@@ -1,32 +1,64 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import '../App.css';
 import Event from './Event';
+import { likeClicked } from './events.action';
+import ApplicationActions from '../constants/app.actions';
 
-const apiResponses = Object.freeze([
-    { phone: '982-790-2592', date: new Date, source: 'Facebook', eventName: 'Something@facebook', organisedBy: 'Gaurav', city: 'Delhi', venue: 'Facebook HQ', description: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.' },
-    { phone: '982-790-2592', date: new Date, source: 'Twitter', eventName: 'Something@twitter', organisedBy: 'Vibhor', city: 'Noida', venue: 'TTN',description: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.'  },
-    { phone: '982-790-2592', date: new Date, source: 'Meetup', eventName: 'Something@meetup', organisedBy: 'Vineeta', city: 'Gurgaon', venue: 'Google HQ',description: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.'  },
-    { phone: '982-790-2592', date: new Date, source: 'Facebook', eventName: 'awesomework@facebook', organisedBy: 'Sourabh', city: 'Banglore', venue: 'IBM HQ',description: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.'  }
-  ]);
+class EventList extends React.Component {
 
-class EventList extends React.Component{
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      apiResponses: apiResponses
+    constructor(props) {
+        super(props);
+        this.state = { apiResponses: props.events };
+        this.onCommentClicked = this.onCommentClicked.bind(this);
+        this.onDislikeClicked = this.onDislikeClicked.bind(this);
+        this.onLikeClicked = this.onLikeClicked.bind(this);
+        this.onShareClickes = this.onShareClicked.bind(this);
     }
-  }
 
-  render() {
-    return (
-      <ul>
-          {
-              this.state.apiResponses.map( (response, index) => (<Event event={response} key={index}></Event>))
-          }
-      </ul>
-    );
-  }
+    onDislikeClicked(event) {
+        this.props.dispatch({
+            type: ApplicationActions.Events.DisLikeButtonClicked,
+            payload: event
+        });
+    }
+
+    onLikeClicked(event) {
+        this.props.dispatch({
+            type: ApplicationActions.Events.LikeButtonClicked,
+            payload: event
+        });
+    }
+
+    onShareClicked() { }
+
+    onCommentClicked() { }
+
+    render() {
+        return (
+            <ul>
+                {
+                    this.state.apiResponses.map((event, index) => (
+                        <Event event={event}
+                               key={index}
+                               onCommentClicked={this.onCommentClicked}
+                               onShareClickes={this.onShareClicked}
+                               onLikeClicked={e => this.onLikeClicked(event)}
+                               onDislikeClicked={e => this.onDislikeClicked(event)}
+                        >
+                        </Event>
+                    ))
+                }
+            </ul>
+        );
+    }
 }
 
-export default EventList;
+// Get apps state and pass it as props to UserList
+//      > whenever state changes, the UserList will automatically re-render
+function mapStateToProps(state) {
+    return { events: state.events };
+}
+
+export default connect(mapStateToProps)(EventList);
