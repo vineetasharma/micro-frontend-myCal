@@ -78,6 +78,14 @@ body { background-image: radial-gradient( cover, rgba(92,100,111,1) 0%,rgba(31,3
   margin: 20px auto 0;
   width: 298px;
 }
+
+.signupbtn {
+  border-radius: 6px;
+  height: 257px;
+  margin: 20px auto 0;
+  width: 298px;
+    margin-left: 110px;
+}
 .signup {
   background: #eceeee;
   border: 1px solid #42464b;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Notifications, {notify} from 'react-notify-toast';
+import { Link } from 'react-router-dom'
 
 
 let userEmail = null, userPassword = null;
@@ -50,6 +51,9 @@ class Login extends  Component {
                 <input type="password" placeholder="Password" id="user-password" />
                 <a href="#" className="forgot">forgot password?</a>
                 <input type="submit"  onClick={this.submit} value="Sign In" />
+                <div className="signupbtn"> Or,
+                    <Link to="/signup">Signup</Link>
+                </div>
             </div>
             <div className="shadow"></div>
             <Notifications />
