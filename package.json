@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.1",
+    "isomorphic-fetch": "^2.2.1",
     "material-ui": "^0.17.4",
     "material-ui-build": "0.17.3",
     "react": "^15.5.4",

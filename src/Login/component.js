@@ -17,11 +17,6 @@ class Login extends  Component {
         userPassword.value = "";
     }
 
-    validateEmail(email) {
-        let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    }
-
     submit = () => {
         if(!userPassword.value){
             notify.show('Please, enter correct email & password!', 'error');
