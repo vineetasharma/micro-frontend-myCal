@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import '../App.css';
 import Event from './Event';
-import { likeClicked } from './events.action';
+import { likeClicked, fetchEvents } from './events.action';
 import ApplicationActions from '../constants/app.actions';
 import styles from './styles';
 import CircularProgress from 'material-ui/CircularProgress';
@@ -17,18 +17,7 @@ class EventList extends React.Component {
         this.onDislikeClicked = this.onDislikeClicked.bind(this);
         this.onLikeClicked = this.onLikeClicked.bind(this);
         this.onShareClicked = this.onShareClicked.bind(this);
-        this.props.dispatch({ type: ApplicationActions.Events.FetchEventsStart, payload: null });
-        setTimeout(() => {  // for just to show loader...
-            axios.get('http://rest.learncode.academy/api/gaurav/friends')
-                .then((response) => {
-                    console.log(`Response is --> ${JSON.stringify(response, null, 4)}`);
-                    this.props.dispatch({ type: ApplicationActions.Events.FetchEventsSuccess, payload: response.data });
-                })
-                .catch(error => {
-                    console.log(`Error is ${error}`);
-                    this.props.dispatch({ type: ApplicationActions.Events.FetchEventsFailed, payload: error});
-                });
-        }, 1000);
+        this.props.dispatch(fetchEvents({ userName: 'gaurav'}));
     }
 
     onDislikeClicked(event) {
